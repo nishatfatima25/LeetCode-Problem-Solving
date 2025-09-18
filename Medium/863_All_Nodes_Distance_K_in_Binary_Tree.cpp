@@ -81,3 +81,42 @@ public:
         return ans;
     }
 };
+
+
+//method-2
+
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        
+        if(root == NULL) return 0;
+
+        int heightLeft = leftHeight(root->left);
+        int heightRight = rightHeight(root->right);
+
+        if(heightLeft == heightRight) pow(2,heightLeft) - 1;
+
+        return 1 + countNodes(root->left) + countNodes(root->right);
+    }
+
+    int leftHeight(TreeNode* node){
+        int height =0;
+
+        while(node){
+            height++;
+            node = node->left;
+        }
+        return height;
+    }
+
+    int rightHeight(TreeNode* node){
+        int height =0;
+
+        while(node){
+            height++;
+            node = node->right;
+        }
+
+        return height;
+    }
+};
