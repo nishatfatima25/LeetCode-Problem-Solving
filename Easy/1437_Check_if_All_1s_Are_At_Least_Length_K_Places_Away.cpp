@@ -1,0 +1,18 @@
+// LeetCode Problem : 1437. Check if All 1's Are at Least Length K Places Away
+// Link : https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/description/
+
+class Solution {
+public:
+    bool kLengthApart(vector<int>& nums, int k) {
+        int last = -1e9;
+
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i] == 1){
+                if(i-last-1 < k) return false;
+                last = i;
+            }
+        }
+
+        return true;
+    }
+};
