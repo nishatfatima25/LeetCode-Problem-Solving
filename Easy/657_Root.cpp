@@ -1,0 +1,22 @@
+//LeetCode Problem : 657. Robot
+//Link : https://leetcode.com/problems/robot-return-to-origin/
+
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+        
+        int UD = 0;
+        int LR = 0;
+
+        for(int i=0; i<moves.size(); i++){
+            if(moves[i] == 'U') UD++;
+            else if(moves[i] == 'D') UD--;
+            else if(moves[i] == 'L') LR++;
+            else if(moves[i] == 'R') LR--;
+
+        }
+
+        if(UD ==0 && LR == 0) return 1;
+        return 0;
+    }
+};
