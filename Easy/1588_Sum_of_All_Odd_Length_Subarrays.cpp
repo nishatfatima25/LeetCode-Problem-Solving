@@ -18,3 +18,24 @@ public:
         return ans;
     }
 };
+
+//Method -2
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) {
+        int ans = 0;
+        int n = arr.size();
+        
+        for (int i = 0; i < n; i++) {
+            int start = i + 1;
+            int end = n - i;
+            int total = end * start;
+            int oddSubarrays = total / 2;
+            if (total % 2 == 1) oddSubarrays++;
+
+            ans += oddSubarrays * arr[i];
+        }
+        
+        return ans;
+    }
+};
