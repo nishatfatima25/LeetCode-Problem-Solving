@@ -25,3 +25,30 @@ public:
         return ans;
     }
 };
+
+// Method - 2
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char,int> mpp;
+        for(char ch : s) mpp[ch]++;
+
+        priority_queue<pair<int,int>> maxHeap;
+        for(auto it : mpp){
+            char val = it.first;
+            int freq = it.second;
+            maxHeap.push({freq,val});
+        }
+
+        string ans = "";
+        while(!maxHeap.empty()){
+            int freq = maxHeap.top().first;
+            char val = maxHeap.top().second;
+            maxHeap.pop();
+
+            for(int i=1; i<=freq; i++) ans += val;
+        }
+
+        return ans;
+    }
+};
