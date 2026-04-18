@@ -1,6 +1,7 @@
 // LeetCode Problem : 322. Coin Change
 // Link : https://leetcode.com/problems/coin-change/description/
 
+// Tabulation
 class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
@@ -24,5 +25,34 @@ public:
         }
         if(dp[n][amount] >= INT_MAX-1) return -1;
         return dp[n][amount];
+    }
+};
+
+// Memoisation
+class Solution {
+public:
+    long long dp[13][100001];
+
+    int func(vector<int>& coins, int amount, int n){
+        if(amount == 0) return 0;
+        if(n == 0) return INT_MAX-1;
+
+        if(dp[n][amount] != -1) return dp[n][amount];
+
+        if(coins[n-1] <= amount){
+            int include = func(coins,amount-coins[n-1],n);
+            int exclude = func(coins,amount,n-1);
+
+            return dp[n][amount] = min(1+include,exclude);
+        }
+        else return dp[n][amount] = func(coins,amount,n-1);
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        memset(dp,-1,sizeof(dp));
+        int n = coins.size();
+        int ans = func(coins,amount,n);
+
+        return (ans >= INT_MAX - 1) ? -1 : ans;
     }
 };
