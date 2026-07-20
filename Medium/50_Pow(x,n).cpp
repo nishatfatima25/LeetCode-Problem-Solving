@@ -22,3 +22,22 @@ public:
         return ans;
     }
 };
+
+// Recursion
+class Solution {
+public:
+    double pwr(double base, long long exp){
+        if(exp == 0) return 1.0;
+        if(exp == 1) return base;
+
+        if(exp % 2 == 0) return pwr(base*base,exp/2);
+        return base * pwr(base,exp-1);
+    }
+    double myPow(double x, int n) {
+        
+        long long num = n;
+
+        if(num < 0) return (1.0/pwr(x,-1*num));
+        return pwr(x,num);
+    }
+};
