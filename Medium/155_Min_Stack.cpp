@@ -69,4 +69,47 @@ public:
     }
 };
 
+// Method - 3
+class MinStack {
+public:
+
+    stack<long long int> st;
+    long long int mini;
+
+    MinStack() {
+        
+    }
+    
+    void push(int value) {
+
+        if(st.empty()){
+            st.push(value);
+            mini = value;
+        } 
+        else{
+            if(value < mini){
+                st.push((long long)2*value - mini);
+                mini = value;
+            }
+            else st.push(value);
+        }
+    }
+    
+    void pop() {
+        if(st.top() < mini){
+            mini = (long long) 2*mini - st.top();
+        }
+        st.pop();
+    }
+    
+    int top() {
+        if(st.top() < mini) return mini;
+        return st.top();
+    }
+    
+    int getMin() {
+        return mini;
+    }
+};
+
 
