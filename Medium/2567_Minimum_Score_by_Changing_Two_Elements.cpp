@@ -1,0 +1,18 @@
+// LeetCode Problem : 2567. Minimum Score by Changing Two Elements
+// Link : https://leetcode.com/problems/minimum-score-by-changing-two-elements/description/
+
+class Solution {
+public:
+    int minimizeSum(vector<int>& nums) {
+        int n = nums.size();
+        if(n<=3) return 0;
+
+        sort(nums.begin(),nums.end());
+
+        int ans = min({ nums[n-3]-nums[0],
+                        nums[n-2]-nums[1],
+                        nums[n-1]-nums[2]});
+
+        return ans;
+    }
+};
